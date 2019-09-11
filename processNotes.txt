@@ -7,3 +7,7 @@ in my list of repositories), this authentication will use just vanilla JavaScrip
 1. install npm with "npm init"
 2. install packages for express server.
     npm install express bcrypt
+3. install nodemon
+    npm install --save-dev nodemon
+4. create script to run nodemon
+    
