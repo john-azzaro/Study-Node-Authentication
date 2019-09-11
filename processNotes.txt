@@ -1,3 +1,9 @@
 Process Notes for Node Authentication Study
 ===========================================
+This is a pretty basic examination of authentication in node.  Although Passport can also be used for authentication (see this study 
+in my list of repositories), this authentication will use just vanilla JavaScript and bcrypt for cryptography.
 
+
+1. install npm with "npm init"
+2. install packages for express server.
+    npm install express bcrypt
