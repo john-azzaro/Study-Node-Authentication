@@ -98,6 +98,12 @@ Content-Type: application/json
     Additionally, if you send another GET request after you submit the POST request, you will see the new user at the users endpoint.
 
 
+
+
+
+
+
+
 Adding security to your users and passwords with hashing.
 ========================================================
 If someone gets access to our database, they could easily read all the names and passwords.  So the best way to secure the names and passwords is with
@@ -277,4 +283,27 @@ you will see two different passwords (same as the example above!).  For example
     ]
     ------------------------------------------------------
 
-    
+
+8. For logins, setup another POST request.
+
+--------------------------------------------------------------------
+app.post('/users/login', async function(req, res) {                            // To do login, set route to users/login and use an async function (since bcrypt is an async library)
+    const user = users.find(user => user.name === req.body.name)               // find the user...
+    if (user === null) {                                                       // if the user does NOT exist...
+        return res.status(400).send('Cannot find user...');                    //  return an error status code and error message.
+    }
+    try {                                                                      // next setup a try/catch block where we will do the comparison for the user.
+        await bcrypt.compare(req.body.password, user.password)                 // use the compare method for bcrypt and pass in the intial password, then the hashed password from "user"
+    } catch (error) {                                                          // and if there is an error, send 500 status code.
+        res.status(500).send();
+    }
+
+});
+--------------------------------------------------------------------
+First, we want to find the user using the find method and search users for a name that matches the body name provided.
+Second, then, check to see if the user name exists...
+THird, inside a try block, use the "bcrypt.compare" method.  Then, you first pass the ititial password and THEN the hashed password (inside users which we found earlier).
+    What this does is compares the two passwords, gets the salt out of the hashed password, hash the password provided and check to see if they are the same.
+
+When you go to test it by sending a POST of a user, then try a login POST request, you will get a "Login Successful" message.  However, if you try to send another 
+POST login with the password misspelled, you will get a "login failed" message.

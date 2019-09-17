@@ -26,10 +26,18 @@ app.post('/users', async function(req, res) {                                 //
  
 app.post('/users/login', async function(req, res) {                            // To do login, set route to users/login and use an async function (since bcrypt is an async library)
     const user = users.find(user => user.name === req.body.name)               // find the user...
-    if (user === null) {                                                      // if the user does NOT exist
-        return res.status(400)
+    if (user === null) {                                                       // if the user does NOT exist...
+        return res.status(400).send('Cannot find user...');                    //  return an error status code and error message.
     }
-    
+    try {                                                                      // next setup a try/catch block where we will do the comparison for the user.
+        if (await bcrypt.compare(req.body.password, user.password)) {          // use the compare method for bcrypt and pass in the intial password, then the hashed password from "user"
+            res.send('Login Successful')                                       // and if the two are the same, the response will send successfully. 
+        } else {                                                               // And if the login was not correct...
+            res.send('Login failed')                                           // send a login failed message.
+        }             
+    } catch (error) {                                                          // and if there is an error, send 500 status code.
+        res.status(500).send();
+    }
 
 });
 
