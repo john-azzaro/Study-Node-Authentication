@@ -235,4 +235,46 @@ $2b$10$/tJcQTlBJAOoFnDKad3M6OQKkcOvoQPLo/iYEJLk.gaEvwhFXe39C          <== salt +
 
 So once you do this, you have a user and password.  That password can be used by any other user in your database because the salt
 will make it different.  You can test this out by sending a post request for the exact same user and when you send a GET request, 
-you will see two different passwords (same as the example above!).
+you will see two different passwords (same as the example above!).  For example
+
+    First GET request (which will show the example user we have by default):
+    ------------------------------------------------------
+    [
+    {
+        "name": "John Smith"
+    }
+    ]
+    ------------------------------------------------------
+
+    Second, Send the POST request with a new user (i.e. Alan Turing). IN gitbash you'll see the salt and salt+hashed password.
+    When you send a GET request, you will see the name and the password which is hashed and salted.
+    ------------------------------------------------------
+    You app is listening on port 3000...
+    $2b$10$v.djtI71AcqSPn75sZHTOO
+    $2b$10$v.djtI71AcqSPn75sZHTOOyyviecbsQG9ZxcVcIwc9xsfxYvJGhle
+    ------------------------------------------------------
+
+    Third, to test how salt and hashed password can allow same passwords, send the POST request again.
+    ------------------------------------------------------
+    $2b$10$6eh37ej7g5Ki9Bx3fsw8k.
+    $2b$10$6eh37ej7g5Ki9Bx3fsw8k.GFyjgXGi5qiBpqGbzE2ccosp81BOGmq
+    ------------------------------------------------------
+
+    Fourth, send a GET request to see your users and compare the names and passwords.
+    ------------------------------------------------------
+    [
+    {
+        "name": "John Smith"
+    },
+    {
+        "name": "Alan Turing",
+        "password": "$2b$10$v.djtI71AcqSPn75sZHTOOyyviecbsQG9ZxcVcIwc9xsfxYvJGhle"
+    },
+    {
+        "name": "Alan Turing",
+        "password": "$2b$10$6eh37ej7g5Ki9Bx3fsw8k.GFyjgXGi5qiBpqGbzE2ccosp81BOGmq"
+    }
+    ]
+    ------------------------------------------------------
+
+    

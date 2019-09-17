@@ -12,7 +12,7 @@ app.get('/users', function(req, res) {                                // create 
 
 app.post('/users', async function(req, res) {                                 // when the client posts by submitting a user name a password...and add an "async" modifer for bcrypt for security
     try {
-        const salt = await bcrypt.genSalt();                                  // genrate a salt and save as the variable "salt".
+        const salt = await bcrypt.genSalt();                                  // generate a salt and save as the variable "salt".  10 is the default (i.e. left blank) but avoid higher numbers.
         const hashedPassword = await bcrypt.hash(req.body.password, salt);    // Then hash the password
         console.log(salt);
         console.log(hashedPassword);
@@ -22,6 +22,14 @@ app.post('/users', async function(req, res) {                                 //
     } catch(error) {
         res.status(500).send();
     }
+});
+ 
+app.post('/users/login', async function(req, res) {                            // To do login, set route to users/login and use an async function (since bcrypt is an async library)
+    const user = users.find(user => user.name === req.body.name)               // find the user...
+    if (user === null) {                                                      // if the user does NOT exist
+        return res.status(400)
+    }
+    
 
 });
 
