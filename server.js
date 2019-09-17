@@ -1,5 +1,6 @@
 const express = require("express");                                   // load the express library
 const app = express();                                                // let app is equal to running the express function.
+const bcrypt = require('bcrypt');
 
 app.use(express.json());                                              // allow application to accept json
 

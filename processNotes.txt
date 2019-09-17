@@ -100,3 +100,9 @@ Content-Type: application/json
 
 Adding security to your users and passwords with hashing.
 ========================================================
+If someone gets access to our database, they could easily read all the names and passwords.  So the best way to secure the names and passwords is with
+bcrypt.
+
+1. require in bcrypt (and load the dependcy if you have not already).
+
+const bcrypt = require('bcrypt');
