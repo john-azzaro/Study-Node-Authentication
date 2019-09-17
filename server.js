@@ -16,13 +16,14 @@ app.post('/users', async function(req, res) {                                 //
         const hashedPassword = await bcrypt.hash(req.body.password, salt)     // Then hash the password
         console.log(salt);
         console.log(hashedPassword);
+        const user = { name: req.body.name, password: req.body.password}    // the variable user comprised of the name and the password...
+        users.push(user);                                                   // push the user into the users variable...
+        res.status(201).send();                                             // and return a 201 status code and a blank response to the user.
     } 
     catch(error) {
-
+        console.error('error detected')
     }
-    const user = { name: req.body.name, password: req.body.password}    // the variable user comprised of the name and the password...
-    users.push(user);                                                   // push the user into the users variable...
-    res.status(201).send();                                             // and return a 201 status code and a blank response to the user.
+
 });
 
 app.listen(3000, function() {                                         //  listen on port 3000...

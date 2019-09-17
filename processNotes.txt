@@ -112,7 +112,8 @@ const bcrypt = require('bcrypt');
 To hash a password, you need to do two things: create a "salt" and then use that salt to create a hash password.
 To begin with, when you has a password, (i.e. hash('password')), it will return a "hashed" password with a jumble of letters (i.e. jhbvighveihvsdgjighjsdf).
 However, if the password is just hashed, there can be repeatable patterns that hackers can detect and most likely crack (for example, if two users have the same password they could guess it).
-To avoid this, you add a "salt" to the hash. (i.e. hash(salt + 'password')) which is different for every user.  Main thing is your database is more secure if someone gets access to it.
+To avoid this, you add a "salt" to the hash. (i.e. hash(salt + 'password')) which is different for every user.   The way bcrypt works is that when you save the password (step 6 below), it will
+save the salt with the password with "hashedPassword".  But nayway, the main thing is your database is more secure if someone gets access to it.
 
 
 2. To add bcrypt to your post request, you first need to turn the post request to an async/await function since bcrypt is an asynchronous library.
@@ -166,7 +167,7 @@ app.post('/users', async function(req, res) {
 -------------------------------------------------------------------------------------------------------
 
 
-5. Next, add your hashed password.
+5. Next, add your hashed password AND replace the req.body.passowrd for user with "hashedPassword"
 -------------------------------------------------------------------------------------------------------
 
 app.post('/users', async function(req, res) {
@@ -179,9 +180,26 @@ app.post('/users', async function(req, res) {
     } catch(error) {
         
     }
-    const user = { name: req.body.name, password: req.body.password}
+    const user = { name: req.body.name, password: hashedPassword}
     users.push(user);
     res.status(201).send();
+});
+
+-------------------------------------------------------------------------------------------------------
+
+6. Now you can move your remaining code inside the try block
+-------------------------------------------------------------------------------------------------------
+
+app.post('/users', async function(req, res) {
+    try {
+        const salt = await bcrypt.genSalt(); 
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)            <== 
+        const user = { name: req.body.name, password: hashedPassword}
+        users.push(user);
+        res.status(201).send();
+    } catch(error) {
+        console.err(error)
+    }
 });
 
 -------------------------------------------------------------------------------------------------------
