@@ -83,34 +83,8 @@ app.post('/users', function(req, res) {                                 // when 
 ------------------------------------------------------
 
 
-
-
-
-13. Second, send a request
---------------------------------------------
-
-
-
-
-
-
-
-
-
---------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-13.  Second, we need to create a test user to post to our users variable, so we create a POST request to the users endpoint
-     with a a content type of JSON and then a JSON object with a user and a password.
+13.  When you test the POST request, you should get a confirmation (i.e. HTTP/1.1 201 Created).  But before you do that, you  need to create a 
+     test user to post to our users variable, so we create a POST request to the users endpoint with a a content type of JSON and then a JSON object with a user and a password.
 
 ----------------------------------------------------------
 POST http://localhost:3000/users
@@ -121,4 +95,8 @@ Content-Type: application/json
     "password": "password"
 }
 ----------------------------------------------------------
+    Additionally, if you send another GET request after you submit the POST request, you will see the new user at the users endpoint.
 
+
+Adding security to your users and passwords with hashing.
+========================================================
