@@ -1,6 +1,6 @@
-const express = require("express");               // load the express library
-const app = express();                            // load express app
+const express = require("express");                                   // load the express library
+const app = express();                                                // let app is equal to running the express function.
 
-app.listen(3000, function() {                                       //  listen on port 3000...
+app.listen(3000, function() {                                         //  listen on port 3000...
     console.log('You app is listening on port 3000...');
 })
