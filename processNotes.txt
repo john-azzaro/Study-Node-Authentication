@@ -173,14 +173,14 @@ app.post('/users', async function(req, res) {
 app.post('/users', async function(req, res) {
     try {
         const salt = await bcrypt.genSalt(); 
-        const hashedPassword = await bcrypt.hash(req.body.password, salt)            <== 
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)            <== hashed passowrd
         ...
         ...
         ...
     } catch(error) {
         res.status(500).send();
     }
-    const user = { name: req.body.name, password: hashedPassword}
+    const user = { name: req.body.name, password: hashedPassword}                    <== replace req.body.password with the variable "hashedPassword"
     users.push(user);
     res.status(201).send();
 });
@@ -193,13 +193,15 @@ app.post('/users', async function(req, res) {
 app.post('/users', async function(req, res) {
     try {
         const salt = await bcrypt.genSalt(); 
-        const hashedPassword = await bcrypt.hash(req.body.password, salt)            <== 
-        const user = { name: req.body.name, password: hashedPassword}
-        users.push(user);
-        res.status(201).send();
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)
+        const user = { name: req.body.name, password: hashedPassword}           --|
+        users.push(user);                                                         |-- moved inside try block.
+        res.status(201).send();                                                 --|
     } catch(error) {
         res.status(500).send();
     }
 });
 
 -------------------------------------------------------------------------------------------------------
+
+7. To test whether the encryption method above works, console.log both the salt and the hashed password.
