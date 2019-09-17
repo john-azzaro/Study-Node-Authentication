@@ -204,4 +204,35 @@ app.post('/users', async function(req, res) {
 
 -------------------------------------------------------------------------------------------------------
 
+
 7. To test whether the encryption method above works, console.log both the salt and the hashed password.
+-------------------------------------------------------------------------------------------------------
+
+app.post('/users', async function(req, res) {
+    try {
+        const salt = await bcrypt.genSalt(); 
+        const hashedPassword = await bcrypt.hash(req.body.password, salt);
+        console.log(salt);                                                          <== log the salt
+        console.log(hashedPassword);                                                <== log the password
+        const user = { name: req.body.name, password: hashedPassword}
+        users.push(user);     
+        res.status(201).send();
+    } catch(error) {
+        res.status(500).send();
+    }
+});
+
+-------------------------------------------------------------------------------------------------------
+
+When you send the request(response shoudl be HTTP/1.1 201 Created), you will see the salt and hashed password:
+-------------------------------------------------------------------
+
+You app is listening on port 3000... 
+$2b$10$/tJcQTlBJAOoFnDKad3M6O                                         <== salt
+$2b$10$/tJcQTlBJAOoFnDKad3M6OQKkcOvoQPLo/iYEJLk.gaEvwhFXe39C          <== salt + hashed password
+
+-------------------------------------------------------------------
+
+So once you do this, you have a user and password.  That password can be used by any other user in your database because the salt
+will make it different.  You can test this out by sending a post request for the exact same user and when you send a GET request, 
+you will see two different passwords (same as the example above!).
