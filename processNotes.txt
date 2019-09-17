@@ -3,7 +3,8 @@ Process Notes for Node Authentication Study
 This is a pretty basic examination of authentication in node.  Although Passport can also be used for authentication (see this study 
 in my list of repositories), this authentication will use just vanilla JavaScript and bcrypt for cryptography.
 
-
+Setting up the project
+=======================
 1. install npm with "npm init"
 2. install packages for express server.
     npm install express bcrypt
@@ -11,11 +12,28 @@ in my list of repositories), this authentication will use just vanilla JavaScrip
     npm install --save-dev nodemon
 4. create script to run nodemon
     "devStart": "nodemon server.js",
+
+Creating a basic server
+=======================
 6. Create a server.js file.
 7. In server.js, load express and express app.
+---------------------------------------------
     const express = require('express');
     const app = express();
+---------------------------------------------
+
 8. Listen on port 3000
+--------------------------------------------------------------
     app.listen(3000, function() { 
         console.log('You app is listening on port 3000...');
-    })
+    });
+--------------------------------------------------------------
+
+Create routes
+==============
+First, create a basic GET route:
+-------------------------------------------
+    app.get('users', function() {
+
+    });
+-------------------------------------------
