@@ -63,3 +63,28 @@ Test GET route
 
 Create a POST route
 ===================
+    For authentication, you need to have a way to add users to authenticate.
+    Within the post route, we need to:
+       1. Create a users
+       2. Hashing the password sent from a users
+       3. Saving the password inside the "users" variable.
+
+12. First, create a basic POST route in your server.js file:
+------------------------------------------------------
+    app.post('/users', function(req, res) {
+
+    });
+------------------------------------------------------
+
+13.  Second, we need to create a test user to post to our users variable, so we create a POST request to the users endpoint
+     with a a content type of JSON and then a JSON object with a user and a password.
+
+----------------------------------------------------------
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "Alan Turing",
+    "password": "password"
+}
+----------------------------------------------------------

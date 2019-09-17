@@ -7,6 +7,10 @@ app.get('/users', function(req, res) {                                // create 
     res.json(users);                                                  // send response of users as a json object
 });
 
+app.post('/users', function(req, res) {
+
+});
+
 app.listen(3000, function() {                                         //  listen on port 3000...
     console.log('You app is listening on port 3000...');
 })
