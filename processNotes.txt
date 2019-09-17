@@ -106,3 +106,9 @@ bcrypt.
 1. require in bcrypt (and load the dependcy if you have not already).
 
 const bcrypt = require('bcrypt');
+
+2. 
+To hash a password, you need to do two things: create a "salt" and then use that salt to create a hash password.
+To begin with, when you has a password, (i.e. hash('password')), it will return a "hashed" password with a jumble of letters (i.e. jhbvighveihvsdgjighjsdf).
+However, if the password is just hashed, there can be repeatable patterns that hackers can detect and most likely crack (for example, if two users have the same password they could guess it).
+To avoid this, you add a "salt" to the hash. (i.e. hash(salt + 'password')) which is different for every user.
