@@ -69,12 +69,45 @@ Create a POST route
        2. Hashing the password sent from a users
        3. Saving the password inside the "users" variable.
 
-12. First, create a basic POST route in your server.js file:
+12. First, create POST route in your server.js file:
 ------------------------------------------------------
-    app.post('/users', function(req, res) {
+What this effectively does is push the new user into "users" with the variable comprised the name and password in the body of the response
+and then returns a status of 201 (successful) and a blank response.
 
-    });
+
+app.post('/users', function(req, res) {                                 // when the client posts by submitting a user name a passord...
+    const user = { name: req.body.name, password: req.body.password}    // the variable user comprised of the name and the password...
+    users.push(user);                                                   // push the user into the users variable...
+    res.status(201).send();                                             // and return a 201 status code and a blank response to the user.
+});
 ------------------------------------------------------
+
+
+
+
+
+13. Second, send a request
+--------------------------------------------
+
+
+
+
+
+
+
+
+
+--------------------------------------------
+
+
+
+
+
+
+
+
+
+
 
 13.  Second, we need to create a test user to post to our users variable, so we create a POST request to the users endpoint
      with a a content type of JSON and then a JSON object with a user and a password.
@@ -88,3 +121,4 @@ Content-Type: application/json
     "password": "password"
 }
 ----------------------------------------------------------
+
