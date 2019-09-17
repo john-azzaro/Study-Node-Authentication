@@ -28,6 +28,8 @@ Creating a basic server
         console.log('You app is listening on port 3000...');
     });
 --------------------------------------------------------------
+In gitbash, run npm run devStart to have nodemon constantly refresh.
+
 
 Create routes
 ==============
@@ -35,6 +37,16 @@ First, create a basic GET route:
 Note: you normally wouldnt want a route that would request users but for this study you can do this.
 -------------------------------------------
     app.get('/users', function(req, res) {
-
+        res.json(users);                      <== this says that the response should be the users in json format.
     });
 -------------------------------------------
+
+Test routes
+===========
+Either in Postman or Rest Client (which we use for this study), send a test request.
+To do this, you first need ot create a "resquest.rest" file.
+Inside that file, you write your GET request:
+-----------------------------------------
+GET http://localhost:3000/users                <== this says that a GET request will be sent to the url entered to the users endpoint.
+-----------------------------------------
+The response you get back should ba an empty array (since we created a local variable "users" for test purposes)
