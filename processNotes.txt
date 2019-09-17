@@ -134,8 +134,8 @@ app.post('/users', async function(req, res) {                                 <=
 app.post('/users', async function(req, res) {
     try {                                                                          <== try/catch block
 
-    } catch(error) {
-        
+    } catch(error) {                                                               <== if an error occurs, send a response with a status of 500.
+        res.status(500).send();
     }
     const user = { name: req.body.name, password: req.body.password}
     users.push(user);
@@ -157,7 +157,7 @@ app.post('/users', async function(req, res) {
         ...                                                               make this an "await" since it is an asynchronous function.
         ...
     } catch(error) {
-        
+        res.status(500).send();
     }
     const user = { name: req.body.name, password: req.body.password}
     users.push(user);
@@ -178,7 +178,7 @@ app.post('/users', async function(req, res) {
         ...
         ...
     } catch(error) {
-        
+        res.status(500).send();
     }
     const user = { name: req.body.name, password: hashedPassword}
     users.push(user);
@@ -198,7 +198,7 @@ app.post('/users', async function(req, res) {
         users.push(user);
         res.status(201).send();
     } catch(error) {
-        console.err(error)
+        res.status(500).send();
     }
 });
 

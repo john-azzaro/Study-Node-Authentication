@@ -19,9 +19,8 @@ app.post('/users', async function(req, res) {                                 //
         const user = { name: req.body.name, password: req.body.password}    // the variable user comprised of the name and the password...
         users.push(user);                                                   // push the user into the users variable...
         res.status(201).send();                                             // and return a 201 status code and a blank response to the user.
-    } 
-    catch(error) {
-        console.error('error detected')
+    } catch(error) {
+        res.status(500).send();
     }
 
 });
