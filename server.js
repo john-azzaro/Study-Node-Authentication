@@ -10,7 +10,12 @@ app.get('/users', function(req, res) {                                // create 
     res.json(users);                                                  // send response of users as a json object
 });
 
-app.post('/users', function(req, res) {                                 // when the client posts by submitting a user name a passord...
+app.post('/users', async function(req, res) {                           // when the client posts by submitting a user name a password...and add an "async" modifer for bcrypt for security
+    try {
+
+    } catch(error) {
+        
+    }
     const user = { name: req.body.name, password: req.body.password}    // the variable user comprised of the name and the password...
     users.push(user);                                                   // push the user into the users variable...
     res.status(201).send();                                             // and return a 201 status code and a blank response to the user.
