@@ -10,9 +10,12 @@ app.get('/users', function(req, res) {                                // create 
     res.json(users);                                                  // send response of users as a json object
 });
 
-app.post('/users', async function(req, res) {                           // when the client posts by submitting a user name a password...and add an "async" modifer for bcrypt for security
+app.post('/users', async function(req, res) {                                 // when the client posts by submitting a user name a password...and add an "async" modifer for bcrypt for security
     try {
-        const salt = bcrypt.genSalt(); 
+        const salt = await bcrypt.genSalt();                                  // genrate a salt and save as the variable "salt".
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)     // Then hash the password
+        console.log(salt);
+        console.log(hashedPassword);
     } 
     catch(error) {
 

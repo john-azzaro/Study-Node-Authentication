@@ -103,8 +103,8 @@ Adding security to your users and passwords with hashing.
 If someone gets access to our database, they could easily read all the names and passwords.  So the best way to secure the names and passwords is with
 bcrypt.
 
-1. require in bcrypt (and load the dependcy if you have not already).
 
+1. require in bcrypt (and load the dependcy if you have not already).
 --------------------------------------
 const bcrypt = require('bcrypt');
 --------------------------------------
@@ -114,8 +114,8 @@ To begin with, when you has a password, (i.e. hash('password')), it will return 
 However, if the password is just hashed, there can be repeatable patterns that hackers can detect and most likely crack (for example, if two users have the same password they could guess it).
 To avoid this, you add a "salt" to the hash. (i.e. hash(salt + 'password')) which is different for every user.  Main thing is your database is more secure if someone gets access to it.
 
-2. To add bcrypt to your post request, you first need to turn the post request to an async/await function since bcrypt is an asynchronous library.
 
+2. To add bcrypt to your post request, you first need to turn the post request to an async/await function since bcrypt is an asynchronous library.
 -------------------------------------------------------------------------------------------------------
 
 app.post('/users', async function(req, res) {                                 <== add async modifier
@@ -126,8 +126,8 @@ app.post('/users', async function(req, res) {                                 <=
 
 -------------------------------------------------------------------------------------------------------
 
-3. Then, you add a try/catch block
 
+3. Then, you add a try/catch block
 -------------------------------------------------------------------------------------------------------
 
 app.post('/users', async function(req, res) {
@@ -143,8 +143,9 @@ app.post('/users', async function(req, res) {
 
 -------------------------------------------------------------------------------------------------------
 
-4. Inside the try block, add your code:
 
+4. Inside the try block, first ad your salt.
+  * remember that this is an asynchronous function so remember to add the await modifier to your values.
 -------------------------------------------------------------------------------------------------------
 
 app.post('/users', async function(req, res) {
@@ -153,6 +154,27 @@ app.post('/users', async function(req, res) {
         ...                                                               the longer it will take to generate the hash but the more secure it will be).  It is best just to leave this empty.
         ...                                                               If you use a 10, it could do a few hashes, but 20 or 30 will take DAYS to generate so just dont do it.  And mak sure
         ...                                                               make this an "await" since it is an asynchronous function.
+        ...
+    } catch(error) {
+        
+    }
+    const user = { name: req.body.name, password: req.body.password}
+    users.push(user);
+    res.status(201).send();
+});
+
+-------------------------------------------------------------------------------------------------------
+
+
+5. Next, add your hashed password.
+-------------------------------------------------------------------------------------------------------
+
+app.post('/users', async function(req, res) {
+    try {
+        const salt = await bcrypt.genSalt(); 
+        const hashedPassword = await bcrypt.hash(req.body.password, salt)            <== 
+        ...
+        ...
         ...
     } catch(error) {
         
