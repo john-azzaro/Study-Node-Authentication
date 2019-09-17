@@ -12,9 +12,10 @@ app.get('/users', function(req, res) {                                // create 
 
 app.post('/users', async function(req, res) {                           // when the client posts by submitting a user name a password...and add an "async" modifer for bcrypt for security
     try {
+        const salt = bcrypt.genSalt(); 
+    } 
+    catch(error) {
 
-    } catch(error) {
-        
     }
     const user = { name: req.body.name, password: req.body.password}    // the variable user comprised of the name and the password...
     users.push(user);                                                   // push the user into the users variable...
