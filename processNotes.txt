@@ -32,8 +32,9 @@ Creating a basic server
 Create routes
 ==============
 First, create a basic GET route:
+Note: you normally wouldnt want a route that would request users but for this study you can do this.
 -------------------------------------------
-    app.get('users', function() {
+    app.get('/users', function(req, res) {
 
     });
 -------------------------------------------
