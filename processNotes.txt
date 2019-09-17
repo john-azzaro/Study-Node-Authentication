@@ -21,7 +21,6 @@ Creating a basic server
     const express = require('express');
     const app = express();
 ---------------------------------------------
-
 8. Listen on port 3000
 --------------------------------------------------------------
     app.listen(3000, function() { 
@@ -31,22 +30,36 @@ Creating a basic server
 In gitbash, run npm run devStart to have nodemon constantly refresh.
 
 
-Create routes
-==============
-First, create a basic GET route:
-Note: you normally wouldnt want a route that would request users but for this study you can do this.
+Create GET route for users
+===========================
+9. First, create a basic GET route:
+   Note: you normally wouldnt want a route that would request users but for this study you can do this.
 -------------------------------------------
     app.get('/users', function(req, res) {
         res.json(users);                      <== this says that the response should be the users in json format.
     });
 -------------------------------------------
 
-Test routes
-===========
-Either in Postman or Rest Client (which we use for this study), send a test request.
-To do this, you first need ot create a "resquest.rest" file.
-Inside that file, you write your GET request:
+
+Create local variable to store users for study
+==============================================
+10. Normally, you would want to have your users in a secure database, not as a variable on your server with an endpoint pointing directly to it.  
+    However, for the purpose of this study, we will use a local variable.
+----------------------------------------
+    const users = [{ name: "John Smith"}]; 
+----------------------------------------
+
+
+Test GET route
+==============
+11. Either in Postman or Rest Client (which we use for this study), send a test request.
+    To do this, you first need ot create a "resquest.rest" file.
+    Inside that file, you write your GET request:
 -----------------------------------------
-GET http://localhost:3000/users                <== this says that a GET request will be sent to the url entered to the users endpoint.
+    GET http://localhost:3000/users                <== this says that a GET request will be sent to the url entered to the users endpoint.
 -----------------------------------------
-The response you get back should ba an empty array (since we created a local variable "users" for test purposes)
+   The response you get back an array of users (since we created a local variable "users" for test purposes), which should just be "Joe Smith".
+
+
+Create a POST route
+===================
