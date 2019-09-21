@@ -307,3 +307,14 @@ THird, inside a try block, use the "bcrypt.compare" method.  Then, you first pas
 
 When you go to test it by sending a POST of a user, then try a login POST request, you will get a "Login Successful" message.  However, if you try to send another 
 POST login with the password misspelled, you will get a "login failed" message.
+
+
+
+
+
+
+
+resources
+==========
+https://hackernoon.com/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46     -- authentication general discussion
+https://www.sitepoint.com/why-you-should-use-bcrypt-to-hash-stored-passwords/          -- bcrypt
