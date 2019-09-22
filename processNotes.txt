@@ -322,3 +322,4 @@ https://flaviocopes.com/javascript-bcrypt/  -- bcrypt
 https://github.com/Createdd/Writing/blob/master/2017/articles/AuthenticationIntro.md#authentication  -- authentication
 https://www.npmjs.com/package/bcrypt  -- bcrypt for npm
 https://medium.com/createdd-notes/starting-with-authentication-a-tutorial-with-node-js-and-mongodb-25d524ca0359  -- authentication
+https://solidgeargroup.com/hashing-passwords-nodejs-mongodb-bcrypt/
