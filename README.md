@@ -11,7 +11,12 @@ authentication process.
 
 ## Study Contents:
 
-* [What is Node Authentication and Encryption?](#)
+* [What is Node Authentication and Encryption?](#What-is-Node-Authentication-and-Encryption)
+* [What is Authentication?](#What-is-Authentication)
+* [What is bcrypt?](#What-is-bcrypt)
+* [How do you implement bcrypt in your authentication?](#How-do-you-implement-bcrypt-in-your-authentication)
+* [Screenshots](#Screenshots)
+
 
 <br>
 
@@ -116,7 +121,8 @@ And if you log ```hashedPassword```, you will see the salt and the hashed passwo
     $2b$10$/tJcQTlBJAOoFnDKad3M6OQKkcOvoQPLo/iYEJLk.gaEvwhFXe39C          <== salt + hashed password
 ```
 
-
+## Screenshots
+![authentication1](https://user-images.githubusercontent.com/37447586/65382414-803c3280-dcb9-11e9-978b-0edd29fe16af.png)
 
 
 
