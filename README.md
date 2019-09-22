@@ -1,9 +1,9 @@
-# Node Authentication and Encryption Study
+# Node Authentication and Encryption with Bcrypt Study
 
 <br>
 
-## What is the Node Authentication and Encryption Study?
-The Node Authentication and Encryption Study is an examination of security and data confidentiality using the bcrypt encryption library. In this study, a basic express application
+## What is the Node Authentication and Encryption with Bcrypt Study?
+The Node Authentication and Encryption with Bcrypt Study is an examination of security and data confidentiality using the bcrypt encryption library. In this study, a basic express application
 demonstrates how to post a user name and password to a locally stored user database, login with a user name and password, and show how bcrypt helps add a high level of security to the
 authentication process.
 
@@ -11,7 +11,7 @@ authentication process.
 
 ## Study Contents:
 
-* [What is Node Authentication and Encryption?](#What-is-Node-Authentication-and-Encryption)
+* [What is Node Authentication and Encryption with Bcrypt?](#What-is-Node-Authentication-and-Encryption-with-Bcrypt)
 * [What is Authentication?](#What-is-Authentication)
 * [What is bcrypt?](#What-is-bcrypt)
 * [How do you implement bcrypt in your authentication?](#How-do-you-implement-bcrypt-in-your-authentication)
