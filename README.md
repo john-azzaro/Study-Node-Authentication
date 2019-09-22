@@ -50,10 +50,10 @@ In this example, we want to secure the password of any user that sends in a POST
 ### STEP 2: Add "async" to your POST request
 Because bcrypt is an asynchronous library, you need to make the POST request an async/await function.  The example below will send the user and password information to the storage variable in our server file unencrypted. We'll change this in a moment but this is what we start with.
 ```JavaScript
-        app.post('/users', async function(req, res) {                                  <== add async modifier
-        const user = { name: req.body.name, password: req.body.password}
-        users.push(user);
-        res.status(201).send();
+    app.post('/users', async function(req, res) {                                // add async modifier
+        const user = { name: req.body.name, password: req.body.password}         // store inputs as "user"
+        users.push(user);                                                        // and push the user to "users"
+        res.status(201).send();                                                  // and send!
     });
 ```
 
@@ -61,11 +61,11 @@ Because bcrypt is an asynchronous library, you need to make the POST request an 
 Try/catch will try the code and execute if successful, but if not, the catch will send a 500 error code back.
 ```JavaScript
     app.post('/users', async function(req, res) {
-        try {                                                                             <== try
+        try {                                                                                // try
             const user = { name: req.body.name, password: req.body.password}
             users.push(user);
             res.status(201).send();
-        } catch(error) {                                                                  <== catch
+        } catch(error) {                                                                     // catch
             res.status(500).send();
         }
     });
@@ -79,7 +79,7 @@ It is best just to leave this empty. If you use a 10, it could do a few hashes, 
 ```JavaScript
     app.post('/users', async function(req, res) {
         try {
-            const salt = await bcrypt.genSalt();                                             <== salt added
+            const salt = await bcrypt.genSalt();                                          // salt added
 
             const user = { name: req.body.name, password: req.body.password}
             users.push(user);
