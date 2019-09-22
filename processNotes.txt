@@ -318,3 +318,7 @@ resources
 ==========
 https://hackernoon.com/your-node-js-authentication-tutorial-is-wrong-f1a3bf831a46     -- authentication general discussion
 https://www.sitepoint.com/why-you-should-use-bcrypt-to-hash-stored-passwords/          -- bcrypt
+https://flaviocopes.com/javascript-bcrypt/  -- bcrypt
+https://github.com/Createdd/Writing/blob/master/2017/articles/AuthenticationIntro.md#authentication  -- authentication
+https://www.npmjs.com/package/bcrypt  -- bcrypt for npm
+https://medium.com/createdd-notes/starting-with-authentication-a-tutorial-with-node-js-and-mongodb-25d524ca0359  -- authentication
