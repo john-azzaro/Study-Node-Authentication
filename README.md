@@ -22,15 +22,29 @@ It should be understood first that passwords should never be stored as plain tex
 <br>
 
 ## What is bcrypt
-Bcrypt is a *cryptographic hash function* which takes a piece of information and returns a string representing this information. So in other words, when we *hash* a password we encrypt it in code that cannot be easily decoded.  However, we can also *salt* a password, which is essentially insert random data in the input for the hash function for additional security.
-
-
-
- When we *hash* a password.
-
-For example, when a user and password is created,  
-
+Bcrypt is a *cryptographic hash function* which takes a piece of information and returns a string representing this information. So in other words, when we *hash* a password we encrypt it in code that cannot be easily decoded.  However, we can also *salt* a password, which is essentially insert random data in the input for the hash function for additional security.  For example, suppose we have a user name and password:
+```
+    {
+        name: Joe Smith
+        password: Abc123
+    }
+```
+When you *salt* and *hash* the password, you will end up with something like this:
+```
+    {
+        name: Joe Smith
+        password: $2b$10$v.djtI71AcqSPn75sZHTOOyyviecbsQG9ZxcVcIwc9xsfxYvJGhle
+    }
+```
 
 <br>
 
-## How do you implement
+## How do you implement bcrypt in your authentication?
+
+
+
+
+
+
+
+
