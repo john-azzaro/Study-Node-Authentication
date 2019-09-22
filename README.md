@@ -21,7 +21,7 @@ authentication process.
 <br>
 
 ## What is Authentication?
-It should be understood first that passwords should never be stored as plain text in a database (or anywhere else for that matter). For securoty purposes, we use for identifying users and providing different access to content depending on their id and thus keep those passwords safe. For example, suppose you have a commerce website that requires users to register and sign into an an account to purchase items. The application would provide a registration and login form with credentials such as a name and password to verify that the user is who they say they are.
+It should be understood first that passwords should never be stored as plain text in a database (or anywhere else for that matter). Identifying users and providing different access to content depending on their id keep those passwords safe. For example, suppose you have a commerce website that requires users to register and sign into an an account to purchase items. The application would provide a registration and login form with credentials such as a name and password to verify that the user is who they say they are.
 
 
 <br>
