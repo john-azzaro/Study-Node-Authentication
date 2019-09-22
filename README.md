@@ -1,4 +1,4 @@
-# Node Authentication and Cryptographic Hash Study
+# Node Authentication and Encryption Study
 
 <br>
 
@@ -22,7 +22,7 @@ It should be understood first that passwords should never be stored as plain tex
 <br>
 
 ## What is bcrypt
-Bcrypt is a *cryptographic hash function* which takes a piece of information and returns a string representing this information. 
+Bcrypt is a *cryptographic hash function* which takes a piece of information and returns a string representing this information. So in other words, when we *hash* a password we encrypt it in code that cannot be easily decoded.  However, we can also *salt* a password, which is essentially insert random data in the input for the hash function for additional security.
 
 
 
