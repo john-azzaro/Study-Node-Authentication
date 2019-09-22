@@ -1,4 +1,4 @@
-# Node Authentication and Encryption Study
+# Node Authentication and Cryptographic Hash Study
 
 <br>
 
@@ -16,12 +16,20 @@ authentication process.
 <br>
 
 ## What is Authentication?
-Authentication is used for identifying users and providing different access to content depending on their id.  For example, suppose you have a commerce website that requires users to register and sign into an an account to purchase items. The application would provide a registration and login form with credentials such as a name and password to verify that the user is who they say they are.
+It should be understood first that passwords should never be stored as plain text in a database (or anywhere else for that matter). For securoty purposes, we use for identifying users and providing different access to content depending on their id and thus keep those passwords safe.  For example, suppose you have a commerce website that requires users to register and sign into an an account to purchase items. The application would provide a registration and login form with credentials such as a name and password to verify that the user is who they say they are.
 
 
 <br>
 
 ## What is bcrypt
+Bcrypt is a *cryptographic hash function* which takes a piece of information and returns a string representing this information. 
+
+
+
+ When we *hash* a password.
+
+For example, when a user and password is created,  
+
 
 <br>
 
