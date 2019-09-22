@@ -42,12 +42,12 @@ When you *salt* and *hash* the password, you will end up with something like thi
 ## How do you implement bcrypt in your authentication?
 In this example, we want to secure the password of any user that sends in a POST to our database by hashing and salting the password to store in our database. 
 
-#### STEP 1: Add the "bcrypt" dependency and require it:
+### STEP 1: Add the "bcrypt" dependency and require it:
 ```JavaScript
     const bcrypt = require('bcrypt');
 ```
 
-#### STEP 2: Add "async" to your POST request
+### STEP 2: Add "async" to your POST request
 Because bcrypt is an asynchronous library, you need to make the POST request an async/await function.
 ```JavaScript
         app.post('/users', async function(req, res) {                              <== add async modifier
@@ -57,7 +57,38 @@ Because bcrypt is an asynchronous library, you need to make the POST request an 
     });
 ```
 
-#### STEP 3: 
+### STEP 3: Create a try/catch block
+Try/catch will try the code and execute if successful, but if not, the catch will send a 500 error code back.
+```JavaScript
+    app.post('/users', async function(req, res) {
+        try {
+            const salt = await bcrypt.genSalt(); 
+
+            const user = { name: req.body.name, password: req.body.password}
+            users.push(user);
+            res.status(201).send();
+        } catch(error) {
+            res.status(500).send();
+        }
+    });
+```
+
+### STEP 4: At the top of your try block, create a "salt"
+To create a salt, you call bcrypt and use the method "genSalt" with any number you want( the larger the number, the longer it will take to generate the hash but the more secure it will be).  It is best just to leave this empty. If you use a 10, it could do a few hashes, but 20 or 30 will take DAYS to generate so just dont do it.  And mak sure make this an "await" since it is an asynchronous function.
+```JavaScript
+    app.post('/users', async function(req, res) {
+        try {
+            const salt = await bcrypt.genSalt();                                  <== salt added
+
+            const user = { name: req.body.name, password: req.body.password}
+            users.push(user);
+            res.status(201).send();
+        } catch(error) {
+            res.status(500).send();
+        }
+    });
+```
+```
 
 
 
