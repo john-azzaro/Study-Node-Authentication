@@ -29,7 +29,7 @@ Bcrypt is a *cryptographic hash function* which takes a piece of information and
         password: Abc123
     }
 ```
-When you *salt* and *hash* the password, you will end up with something like this:
+When you *salt* and *hash* the password, you will end up with a hashed password and salt:
 ```
     {
         name: Joe Smith
@@ -73,9 +73,7 @@ Try/catch will try the code and execute if successful, but if not, the catch wil
 
 ### STEP 4: At the top of your try block, create a "salt"
 To create a salt, you call bcrypt and use the method "genSalt" with any number you want( the larger the number, the longer it will take to generate the hash but the more secure it will be). 
-It is best just to leave this empty. If you use a 10, it could do a few hashes, but 20 or 30 will take DAYS to generate so just dont do it.  And mak sure make this an "await" since it is an asynchronous function.  T
-
-
+It is best just to leave this empty. If you use a 10, it could do a few hashes, but 20 or 30 will take DAYS to generate so just dont do it.  And make sure make this an "await" since it is an asynchronous function.  
 ```JavaScript
     app.post('/users', async function(req, res) {
         try {
@@ -89,9 +87,34 @@ It is best just to leave this empty. If you use a 10, it could do a few hashes, 
         }
     });
 ```
+And if you log ```salt```, you will see generate a unique string, like the following:
+```
+    You app is listening on port 3000... 
+    $2b$10$/tJcQTlBJAOoFnDKad3M6O                    <== salt
+```
 
 ### STEP 5: Next, create a "hashed" password
+Remember that when you create the hashedPassword, you need to pass that to the ```user``` variable.
+```JavaScript
+    app.post('/users', async function(req, res) {
+        try {
+            const salt = await bcrypt.genSalt();
+            const hashedPassword = await bcrypt.hash(req.body.password, salt);       // hashed password
 
+            const user = { name: req.body.name, password: hashedPassword}            // and pass to user.
+            users.push(user);
+            res.status(201).send();
+        } catch(error) {
+            res.status(500).send();
+        }
+    });
+```
+And if you log ```hashedPassword```, you will see the salt and the hashed password.
+```
+    You app is listening on port 3000... 
+    $2b$10$/tJcQTlBJAOoFnDKad3M6O                                         <== salt
+    $2b$10$/tJcQTlBJAOoFnDKad3M6OQKkcOvoQPLo/iYEJLk.gaEvwhFXe39C          <== salt + hashed password
+```
 
 
 
