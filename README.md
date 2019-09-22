@@ -48,9 +48,9 @@ In this example, we want to secure the password of any user that sends in a POST
 ```
 
 ### STEP 2: Add "async" to your POST request
-Because bcrypt is an asynchronous library, you need to make the POST request an async/await function.
+Because bcrypt is an asynchronous library, you need to make the POST request an async/await function.  The example below will send the user and password information to the storage variable in our server file unencrypted. We'll change this in a moment but this is what we start with.
 ```JavaScript
-        app.post('/users', async function(req, res) {                              <== add async modifier
+        app.post('/users', async function(req, res) {                                  <== add async modifier
         const user = { name: req.body.name, password: req.body.password}
         users.push(user);
         res.status(201).send();
@@ -61,24 +61,25 @@ Because bcrypt is an asynchronous library, you need to make the POST request an 
 Try/catch will try the code and execute if successful, but if not, the catch will send a 500 error code back.
 ```JavaScript
     app.post('/users', async function(req, res) {
-        try {
-            const salt = await bcrypt.genSalt(); 
-
+        try {                                                                             <== try
             const user = { name: req.body.name, password: req.body.password}
             users.push(user);
             res.status(201).send();
-        } catch(error) {
+        } catch(error) {                                                                  <== catch
             res.status(500).send();
         }
     });
 ```
 
 ### STEP 4: At the top of your try block, create a "salt"
-To create a salt, you call bcrypt and use the method "genSalt" with any number you want( the larger the number, the longer it will take to generate the hash but the more secure it will be).  It is best just to leave this empty. If you use a 10, it could do a few hashes, but 20 or 30 will take DAYS to generate so just dont do it.  And mak sure make this an "await" since it is an asynchronous function.
+To create a salt, you call bcrypt and use the method "genSalt" with any number you want( the larger the number, the longer it will take to generate the hash but the more secure it will be). 
+It is best just to leave this empty. If you use a 10, it could do a few hashes, but 20 or 30 will take DAYS to generate so just dont do it.  And mak sure make this an "await" since it is an asynchronous function.  T
+
+
 ```JavaScript
     app.post('/users', async function(req, res) {
         try {
-            const salt = await bcrypt.genSalt();                                  <== salt added
+            const salt = await bcrypt.genSalt();                                             <== salt added
 
             const user = { name: req.body.name, password: req.body.password}
             users.push(user);
@@ -88,7 +89,9 @@ To create a salt, you call bcrypt and use the method "genSalt" with any number y
         }
     });
 ```
-```
+
+### STEP 5: Next, create a "hashed" password
+
 
 
 
