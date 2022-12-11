@@ -22,7 +22,7 @@
   "homepage": "https://github.com/john-azzaro/Study-Node-Authentication#readme",
   "dependencies": {
     "bcrypt": "^3.0.6",
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "nodemon": "^1.19.2"
